@@ -88,7 +88,7 @@ function ConnectWallet({
 
   return (
     <ChakraProvider>
-      <div className="">
+      <div className="flex items-center">
         {!userAddress ? (
           <Popover>
             <PopoverTrigger>

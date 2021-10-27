@@ -11,7 +11,7 @@ import {
   ChakraProvider,
 } from "@chakra-ui/react";
 
-function ConnectWalletMob() {
+function ConnectWalletMob({ header }) {
   const [userAddress, setUserAddress] = useState("");
   const connectWallet = async () => {
     if (window) {
@@ -46,6 +46,24 @@ function ConnectWalletMob() {
     }
   };
 
+  const eventCallback = (resolve) => {
+    if (window.earth) {
+      resolve(window.earth);
+      window.removeEventListener("load", eventCallback(resolve));
+    } else {
+      window.alert("Earth Wallet not installed.");
+      window.removeEventListener("load", eventCallback);
+    }
+  };
+
+  const injectEarth = () => {
+    return new Promise((resolve, reject) => {
+      window.addEventListener("load", eventCallback(resolve));
+      const event = new Event("load");
+      window.dispatchEvent(event);
+    });
+  };
+
   return (
     <ChakraProvider>
       <div className="connect-wallet">
@@ -58,15 +76,27 @@ function ConnectWalletMob() {
             <Button className="wallet-connect-button" onClick={connectStoic}>
               <img className="icon-logo" src="/imgs/stoic-logo.png" /> Connect with Stoic
             </Button>
+            <div className="spacer" />
+            <Button className="wallet-connect-button" onClick={connectStoic}>
+              <img className="icon-logo" src="/imgs/earth-logo.jpg" /> Connect with Earth
+            </Button>
           </>
         ) : (
-          <div>
-            <Button className="connect-modal">{`${userAddress.slice(
-              0,
-              8
-            )}...${userAddress.slice(-6)}`}</Button>
-            <div className="spacer" />
-            <Button className="connect-modal">Mint NFT</Button>
+          <div className="text-white text-xs font-normal flex flex-col items-center justify-start">
+            {header && (
+              <p
+                // onClick={() => setUserAddress("")}
+                className="pb-1"
+              >{`${userAddress.slice(0, 8)}...${userAddress.slice(-6)}`}</p>
+            )}
+            <button
+              onClick={() => {
+                setShowPopup(true);
+              }}
+              className="bg-black rounded-lg text-white px-4 py-2"
+            >
+              Mint NFT{" "}
+            </button>
           </div>
         )}
       </div>

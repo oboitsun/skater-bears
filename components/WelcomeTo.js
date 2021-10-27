@@ -42,7 +42,7 @@ export default function WelcomeTo({
       <motion.div variants={item} key={4}>
         <Timer />
       </motion.div>
-      <motion.div variants={item} key={5} className="flex justify-start">
+      <motion.div variants={item} key={5} className="flex justify-start items-center">
         <DynamicComponent
           showPopup={showPopup}
           setShowPopup={setShowPopup}
@@ -50,6 +50,7 @@ export default function WelcomeTo({
           connectWallet={connectWallet}
           userAddress={userAddress}
         />
+        <img className="block ml-4" src="/imgs/dfinity.png" alt="dfinity blockchain" />
       </motion.div>
     </motion.div>
   );

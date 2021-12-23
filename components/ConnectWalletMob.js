@@ -11,8 +11,9 @@ import {
   ChakraProvider,
 } from "@chakra-ui/react";
 
-function ConnectWalletMob({ header, userAddres, setUserAddress }) {
+function ConnectWalletMob({ header, userAddress, setUserAddress }) {
   // const [userAddress, setUserAddress] = useState("");
+
   const connectWallet = async () => {
     if (window) {
       // Canister Ids
@@ -70,15 +71,18 @@ function ConnectWalletMob({ header, userAddres, setUserAddress }) {
         {!userAddress ? (
           <>
             <Button className="wallet-connect-button" onClick={connectWallet}>
-              <img className="icon-logo" src="/imgs/plug-logo.jpg" /> Connect with Plug
+              <img className="icon-logo" src="/imgs/plug-logo.jpg" /> Connect
+              with Plug
             </Button>
             <div className="spacer" />
             <Button className="wallet-connect-button" onClick={connectStoic}>
-              <img className="icon-logo" src="/imgs/stoic-logo.png" /> Connect with Stoic
+              <img className="icon-logo" src="/imgs/stoic-logo.png" /> Connect
+              with Stoic
             </Button>
             <div className="spacer" />
             <Button className="wallet-connect-button" onClick={connectStoic}>
-              <img className="icon-logo" src="/imgs/earth-logo.jpg" /> Connect with Earth
+              <img className="icon-logo" src="/imgs/earth-logo.jpg" /> Connect
+              with Earth
             </Button>
           </>
         ) : (

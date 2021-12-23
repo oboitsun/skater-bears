@@ -4,8 +4,15 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Link as Anchor } from "react-scroll";
 import Socials from "./Socials";
-const DynamicComponent = dynamic(() => import("./ConnectWalletMob"), { ssr: false });
-export default function ModalMenu({ showMenu, setShowMenu }) {
+const DynamicComponent = dynamic(() => import("./ConnectWalletMob"), {
+  ssr: false,
+});
+export default function ModalMenu({
+  showMenu,
+  setShowMenu,
+  userAddress,
+  setUserAddress,
+}) {
   const links = [
     { href: "about-us", text: "About Us" },
     { href: "team", text: "Team" },
@@ -63,7 +70,11 @@ export default function ModalMenu({ showMenu, setShowMenu }) {
         </motion.div>
       ))}
       <div className="my-auto">
-        <DynamicComponent header />
+        <DynamicComponent
+          userAddress={userAddress}
+          setUserAddress={setUserAddress}
+          header
+        />
       </div>
       <Socials big />
       <img

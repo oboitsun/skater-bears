@@ -99,7 +99,12 @@ export default function Home() {
       />
 
       <ComingSoonPopUp showPopup={showPopup} setShowPopup={setShowPopup} />
-      <ModalMenu showMenu={showMenu} setShowMenu={setShowMenu} />
+      <ModalMenu
+        userAddress={userAddress}
+        setUserAddress={setUserAddress}
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+      />
       <div className="flex w-[400%] lg:w-[1920px]  absolute xl:bottom-0 lg:bottom-[-15px]  bottom-[150px] z-[1] left-1/2 transform -translate-x-1/2">
         {bears.map((b, i) => (
           <div key={i} className="w-[10%] transform rotate-[-35deg]">

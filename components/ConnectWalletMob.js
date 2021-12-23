@@ -11,8 +11,8 @@ import {
   ChakraProvider,
 } from "@chakra-ui/react";
 
-function ConnectWalletMob({ header }) {
-  const [userAddress, setUserAddress] = useState("");
+function ConnectWalletMob({ header, userAddres, setUserAddress }) {
+  // const [userAddress, setUserAddress] = useState("");
   const connectWallet = async () => {
     if (window) {
       // Canister Ids

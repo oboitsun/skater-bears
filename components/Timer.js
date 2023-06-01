@@ -3,7 +3,8 @@ import TimerCountItem from "./TimerCountItem";
 
 import { calculateTimeLeft } from "./utils";
 export default function Timer() {
-  const dayX = new Date("December 23, 2022 00:00:00").getTime();
+  const today = Date.now();
+  const dayX = new Date(Date.UTC(2023, 10, 10, 0, 0, 0)).getTime();
   const [timeLeft, setTimeLeft] = useState({
     hours: "0",
     days: "0",
@@ -20,7 +21,11 @@ export default function Timer() {
       clearTimeout(timer);
     };
   });
-  return (
+  return dayX < today ? (
+    <p className="font-fright text-xl lg:text-4xl text-white pb-4 uppercase font-bold">
+      Ready to Mint now!
+    </p>
+  ) : (
     <div className=" flex items-center  mb-4 lg:mb-6 lg:mt-4">
       <p className="font-medium text-white text-xs flex-shrink-0 pr-4">
         Time till
